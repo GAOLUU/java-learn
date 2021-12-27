@@ -6,7 +6,7 @@ package org.learn.concurrent.sync;
  */
 
 public class WaitNotify {
-    private static Object object = new Object();
+    private final static Object object = new Object();
 
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> {
@@ -18,6 +18,8 @@ public class WaitNotify {
                         object.wait(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    }finally {
+
                     }
                 }
             }
@@ -32,6 +34,8 @@ public class WaitNotify {
                         object.wait(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    }finally {
+
                     }
                 }
             }

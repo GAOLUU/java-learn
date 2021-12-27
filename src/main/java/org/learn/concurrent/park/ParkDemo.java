@@ -1,5 +1,7 @@
 package org.learn.concurrent.park;
 
+import lombok.SneakyThrows;
+
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -13,17 +15,14 @@ public class ParkDemo {
 
         Thread thread = new Thread(new InnerPark());
         thread.start();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         thread.interrupt();
     }
 
     private static class InnerPark implements Runnable {
+        @SneakyThrows
         @Override
         public void run() {
+            Thread.sleep(10000);
             System.out.println(Thread.currentThread().isInterrupted());
             LockSupport.park(this);
             System.out.println("....");
