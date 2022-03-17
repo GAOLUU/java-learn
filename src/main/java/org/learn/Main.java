@@ -1,6 +1,6 @@
 package org.learn;
 
-import java.util.HashMap;
+import java.util.Random;
 
 /**
  * @author : gaoluu
@@ -8,10 +8,33 @@ import java.util.HashMap;
  */
 
 public class Main {
+
     public static void main(String[] args) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(null, "123");
-        map.put(null, "456");
-        System.out.println(map.get(null));
+        String a = "a";
+        System.out.println(a.hashCode());
+
+        String arg0 = args[0].intern();
+        System.out.println(arg0);
+        System.out.println(arg0.hashCode());
+        String arg1 = args[1];
+        System.out.println(arg1);
+        System.out.println(arg1.hashCode());
+
+        System.out.println(arg0 == a);
+        System.out.println(arg0 == arg1);
+
+        System.out.println(1);
+    }
+
+    private void testString() {
+        for (int i = 1; ; i++) {
+            String s = new Random().nextBoolean() ? "true" + i : "false" + i;
+            System.out.println(s);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
